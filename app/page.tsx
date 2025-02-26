@@ -1,95 +1,75 @@
+import Link from "next/link";
 import Image from "next/image";
-import styles from "./page.module.css";
+import { client } from "@/sanity/client";
+import { defineQuery } from "next-sanity";
+import { sanityFetch } from "@/sanity/live";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import imageUrlBuilder from "@sanity/image-url";
+import styles from "@/app/ui/page.module.css";
 
-export default function Home() {
+const HOME_QUERY = defineQuery(`
+  *[_type == "homepage"][0]
+`);
+const CALENDAR_QUERY = defineQuery(`
+  *[_type == "calendar"]
+`);
+
+const { projectId, dataset } = client.config();
+const urlFor = (source: SanityImageSource) =>
+  projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    : null;
+
+// fetch the data for the homepage, current image and current text
+// fetch the calendar data
+
+export default async function Home() {
+  const { data: homeInfo } = await sanityFetch({ query: HOME_QUERY });
+  const { data: calendarInfo } = await sanityFetch({ query: CALENDAR_QUERY });
+
+  console.log("calendar: ", calendarInfo );
+  const imgUrl = homeInfo.coverImage
+    ? urlFor(homeInfo.coverImage)?.url()
+    : null;
+  
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <main className={styles.main}>
+      <h1 className={styles.title}>Chloë Engel</h1>
+      <p>{homeInfo.coverText}</p>
+      <div className={styles.coverImage}>
         <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+          src={imgUrl || "https://placehold.co/550x310/png"}
+          alt={homeInfo.altText}
+          className={styles.containImage}
+          height="310"
+          width="550" 
         />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+      </div>
+      <div className={styles.calendarWrapper}>
+        <h2>Calendar/ Upcoming Events</h2>   
+        <ul className={styles.calendarList}>
+          {
+            calendarInfo.map((calItem) => (
+            <li className={styles.calendarListItem} key={`calendar item: ${calItem.title}`}>
+              {calItem.dateRange.from}~{calItem.dateRange.to}~{calItem.title}~{calItem.location}
+              {
+                calItem.externalLink &&
+                  <Link 
+                    href={calItem.externalLink.url} 
+                    className={styles.calLinks}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {calItem.externalLink.title}
+                  </Link>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+              }
+
+            </li>
+            ))
+          }
+        </ul>
+      </div>
+    </main>
   );
 }

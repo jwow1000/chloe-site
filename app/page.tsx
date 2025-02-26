@@ -7,7 +7,6 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 import { Homepage, Calendar } from "./types/types";
 import styles from "@/app/ui/page.module.css";
-import { Url } from "next/dist/shared/lib/router/router";
 
 
 const HOME_QUERY = defineQuery(`
@@ -55,7 +54,6 @@ export default async function Home() {
         <ul className={styles.calendarList}>
           {
             calendarArray.map((calItem) => {
-              const theLink = calItem.externalLink ? calItem.externalLink.url : "#";
               return (
                 <li className={styles.calendarListItem} key={`calendar item: ${calItem.title}`}>
                   {calItem.dateRange?.from}~{calItem.dateRange?.to}~{calItem.title}~{calItem.location}

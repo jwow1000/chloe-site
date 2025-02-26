@@ -5,7 +5,7 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
-import { PostItem } from "@/app/types/types";
+import { Post } from "../types/types";
 import styles from "@/app/ui/page.module.css";
 
 
@@ -24,7 +24,9 @@ const urlFor = (source: SanityImageSource) =>
 
 
 export default async function Works() {
-  const { data: posts } = await sanityFetch({ query: POSTS_QUERY });
+  const { data: postData } = await sanityFetch({ query: POSTS_QUERY });
+  const posts: Post[] = postData;
+
   console.log("data: ", posts );
   return (
     <main className={styles.main}>
@@ -40,7 +42,7 @@ export default async function Works() {
               <li className={styles.postList} key={post._id}>
                 <Link 
                   className={styles.postLink}
-                  href={`/works/${post.slug.current}`}
+                  href={`/works/${post.slug?.current}`}
                 >
                   <h2>{post.title}</h2>
                   <div className={styles.previewImageWrapper}>

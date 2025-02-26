@@ -5,7 +5,10 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
-import styles from "@/app/page.module.css";
+import { PostItem } from "@/app/types/types";
+import styles from "@/app/ui/page.module.css";
+
+
 
 const POSTS_QUERY = defineQuery(`
   *[_type == "post"]

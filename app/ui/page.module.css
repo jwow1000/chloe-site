@@ -6,6 +6,17 @@
   text-decoration: none;
 
 }
+.title {
+  margin: 2rem;
+}
+.main p {
+  margin: 2rem;
+}
+.content {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
 .coverImage {
   width: 30rem;
   height: 30rem;
@@ -20,12 +31,33 @@
   object-fit: contain;
   width: 100%;
   height: 100%;
+  /* backdrop-filter: ; */
+}
+/* Links to Work */
+.workLink {
+  color: white;
+  text-decoration: none;
 }
 
 /* homepage calendar */
 .calendarWrapper {
-  border: 1px solid white;
-  margin: 0 0 0 auto;
+  margin: 2rem;
+  width: 40rem;
+  box-shadow: inset 0 0 0 1px rgb(255, 255, 255);
+  display: grid;
+  grid-template-rows: 0.25fr 0.75fr;
+}
+.calendarTitle {
+  box-shadow: inset 0 0 0 1px rgb(255, 255, 255);
+  padding: 0.5rem;
+}
+.calendarList {
+  padding: 0.5rem;
+}
+.calendarListItem {
+  list-style: none;
+  margin: 0.5rem 0;
+
 }
 .calLinks {
   text-decoration: none;

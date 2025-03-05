@@ -6,6 +6,11 @@
   text-decoration: none;
 
 }
+.navWrapper {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
 .title {
   margin: 2rem;
 }

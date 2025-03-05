@@ -13,9 +13,11 @@
   margin: 2rem;
 }
 .content {
+  padding: 2rem;
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   justify-content: center;
+  gap: 2rem;
 }
 .coverImage {
   width: 30rem;
@@ -34,9 +36,28 @@
   /* backdrop-filter: ; */
 }
 /* Links to Work */
+.worksLinksWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22rem;
+}
 .workLink {
+  width: 100%;
   color: white;
   text-decoration: none;
+  display: flex;
+  flex-flow: column;
+  
+}
+.workTitle {
+  font-size: 1.2rem;
+}
+.workDate {
+  display: block;
+  margin: 0 auto;
+  float: right;
+
 }
 
 /* homepage calendar */

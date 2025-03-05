@@ -16,8 +16,8 @@ const HOME_QUERY = defineQuery(`
 const CALENDAR_QUERY = defineQuery(`
   *[_type == "calendar"]
 `);
-const WORKS_QUERY = defineQuery(`
-  *[_type == "post"]
+const LATEST_WORK_QUERY = defineQuery(`
+  *[_type == "post"][0]
 `);
 
 const { projectId, dataset } = client.config();
@@ -30,18 +30,29 @@ const urlFor = (source: SanityImageSource) =>
 // fetch the calendar data
 
 export default async function Home() {
+  // home data
   const { data: home } = await sanityFetch({ query: HOME_QUERY });
   const homeInfo: Homepage = home;
+  
+  // calendar items
   const { data: calendarInfo } = await sanityFetch({ query: CALENDAR_QUERY });
   const calendarArray: Calendar[] = calendarInfo;
+  
+  // extract home image
   const homeImgAlt = homeInfo.altText ? homeInfo.altText : "#";
   const imgUrl = homeInfo.coverImage
     ? urlFor(homeInfo.coverImage)?.url()
     : null;
-  // get works( posts )
-  const { data: works } = await sanityFetch({ query: WORKS_QUERY });
-  const worksInfo: Post[] = works;
-  console.log("the works: ", works)
+  
+  // get latest work( posts )
+  const { data: work } = await sanityFetch({ query: LATEST_WORK_QUERY });
+  const workInfo: Post = work;
+  const workImgAlt = workInfo.mainImage?.asset?._ref ? workInfo.mainImage?.asset?._ref : "#";
+  const workImgUrl = workInfo.mainImage?.asset?._ref 
+    ? urlFor(workInfo.mainImage?.asset?._ref)?.url() 
+    : null;
+
+
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Chloë Engel</h1>
@@ -59,16 +70,25 @@ export default async function Home() {
         </div>
         <div className={styles.worksLinksWrapper}>
           {
-            worksInfo &&
-              worksInfo.map((work) => (
-                <Link
-                  className={styles.workLink} 
-                  href={`/works/${work.slug?.current}`}
-                  key={`works-${work.title}`}
-                >
-                  {work.title}
-                </Link>
-              ))
+            workInfo &&
+              <Link
+                className={styles.workLink} 
+                href={`/works/${workInfo.slug?.current}`}
+                key={`works-${work.title}`}
+              >
+                <div>
+                  {` ~ `}
+                  <span className={styles.workTitle}>{ workInfo.title && `${workInfo.title} `}</span> {` ~ `}
+                  <span className={styles.workDate}>{ workInfo?.exhibitionDetails?.[0]?.dateRange?.from && `${workInfo?.exhibitionDetails[0].dateRange.from}`} </span>
+                </div>
+                <Image 
+                  src={workImgUrl || "https://placehold.co/550x310/png"}
+                  alt={workImgAlt}
+                  className={styles.containImage}
+                  height="310"
+                  width="550" 
+                />
+              </Link>
           }
         </div>
         <div className={styles.calendarWrapper}>

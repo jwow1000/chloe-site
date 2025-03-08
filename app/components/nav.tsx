@@ -25,6 +25,9 @@ export default function Nav() {
         displayMenu &&
           <nav className={styles.menuWrapper}>
             <ul>
+              <Link href={`/`} className={styles.workLink} >
+                home
+              </Link>
               <Link href={`/works`} className={styles.workLink} >
                 collected works
               </Link>

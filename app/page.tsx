@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import Nav from "./components/nav";
 import { client } from "@/sanity/client";
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
@@ -56,7 +55,6 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
-      <Nav />
       <h1 className={styles.title}>Chloë Engel</h1>
       <p>{homeInfo.coverText}</p>
       <section className={styles.content}>

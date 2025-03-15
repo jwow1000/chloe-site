@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import RandomLine from "./randomLine";
-import styles from "@/app/ui/page.module.css";
+import pageStyles from "@/app/ui/page.module.css";
+import styles from "@/app/ui/nav.module.css";
 
 export default function Nav() {
   const [lineReDraw, setLineReDraw] = useState<boolean>(false);
@@ -14,30 +15,37 @@ export default function Nav() {
   }
 
   return (
-    <div className={styles.navWrapper}>
-      <div 
+    <nav className={styles.navWrapper}>
+      <button
         className={styles.randomLineWrapper}
         onClick={handleClick}
       >
         <RandomLine trig={lineReDraw}/>
-      </div>
+        <menu className={styles.menuTitle}>
+          {
+            displayMenu ?
+              'menu ▼'
+              : 'menu ►'
+          }
+        </menu>
+      </button>
       {
         displayMenu &&
-          <nav className={styles.menuWrapper}>
-            <ul>
-              <Link href={`/`} className={styles.workLink} >
+          <menu className={styles.menuWrapper} onClick={handleClick}>
+            <ul className={styles.linksWrapper}>
+              <Link href={`/`} className={pageStyles.workLink} >
                 home
               </Link>
-              <Link href={`/works`} className={styles.workLink} >
+              <Link href={`/works`} className={pageStyles.workLink} >
                 collected works
               </Link>
-              <Link href={`/bio`} className={styles.workLink} >
+              <Link href={`/bio`} className={pageStyles.workLink} >
                 bio
               </Link>
             </ul>
-          </nav>
+          </menu>
       }
 
-    </div>
+    </nav>
   );
 }

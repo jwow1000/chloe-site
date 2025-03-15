@@ -1,5 +1,13 @@
+.main {
+  margin: 5rem 0 10rem 0;
+}
 .postList {
+  margin: 0 auto;
   width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
 }
 .postLink {
   color: white;
@@ -52,17 +60,26 @@
 /* Links to Work */
 .worksLinksWrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 22rem;
+  flex-direction: column;
+  justify-content: start;
+  align-items: end;
+  width: auto;
+  /* backdrop-filter: invert(50%); */
+  /* background-color: rgba(255,255,255,0.3); */
 }
 .workLink {
-  width: 100%;
+  width: auto;
   color: white;
+  margin: 0.3rem;
+  text-align: right;
   text-decoration: none;
   display: flex;
   flex-flow: column;
   pointer-events: auto; 
+}
+
+.workLink:hover {
+  color: pink;
 }
 .workTitle {
   font-size: 1.2rem;
@@ -97,4 +114,19 @@
 .calLinks {
   text-decoration: none;
   color: rgb(200,200,100);
+}
+
+/* tablet */
+@media (min-width: 600px) and (max-width: 999px) {
+  .navWrapper {
+    right: 0.5rem;
+    top: 0.5rem;
+  } 
+}
+/* mobile */
+@media (max-width: 599px) {
+  .navWrapper {
+    right: 0rem;
+    top: 0rem;
+  } 
 }

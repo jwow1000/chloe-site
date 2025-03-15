@@ -37,7 +37,7 @@ export default async function Works() {
             const img = post.mainImage
             ? urlFor(post.mainImage)?.url()
             : null;
-            console.log("imagds", img)
+            // console.log("imagds", img)
             return (
               <li className={styles.postList} key={post._id}>
                 <Link 
@@ -45,6 +45,7 @@ export default async function Works() {
                   href={`/works/${post.slug?.current}`}
                 >
                   <h2>{post.title}</h2>
+                  <h5>{ post.exhibitionDetails?.[0]?.dateRange?.from && `${post.exhibitionDetails[0].dateRange.from}`}</h5>
                   <div className={styles.previewImageWrapper}>
                     <Image
                       src={img || "https://placehold.co/550x310/png"}

@@ -14,10 +14,13 @@
     "@sanity/cli": "^3.77.2",
     "@sanity/image-url": "^1.1.0",
     "d3": "^7.9.0",
+    "embla-carousel": "^8.5.2",
+    "embla-carousel-react": "^8.5.2",
     "next": "15.1.7",
     "next-sanity": "^9.8.59",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-photo-gallery": "^8.0.0",
     "sanity": "^3.77.2",
     "sanity-typed-schema": "^0.3.1",
     "three": "^0.174.0"

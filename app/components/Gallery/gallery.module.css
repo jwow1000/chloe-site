@@ -1,0 +1,34 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+}
+.leftField {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+}
+.rightField {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+}
+
+.itemWrapper {
+  width: 100%;
+  height: 100%;
+  
+}
+.item {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+

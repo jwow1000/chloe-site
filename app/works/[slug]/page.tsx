@@ -2,12 +2,14 @@
 import { Post } from "@/app/types/types";
 import { client } from "@/sanity/client";
 import Image from "next/image";
+import { GalleryImage } from "@/app/types/localTypes";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import { PortableText } from "next-sanity";
 import { DateDisplay } from "@/app/helpers/conversions";
+import Gallery from "@/app/components/Gallery/gallery";
 import VimeoEmbed from "@/app/components/vimeoEmbed";
 import styles from "@/app/ui/work.module.css";
 import pageStyles from "@/app/ui/page.module.css";
@@ -15,12 +17,6 @@ import pageStyles from "@/app/ui/page.module.css";
 const WORK_QUERY = defineQuery(`
   *[_type == "post" && slug.current == $slug][0]
 `);
-
-interface DetailWorksProps {
-  params: {
-    slug: string;
-  };
-}
 
 // image setup
 const { projectId, dataset } = client.config();
@@ -52,10 +48,20 @@ export default async function DetailWorks({
   }
 
   console.log("the data: ", theWork)
-  // picture sanity stuff
+  // picture sanity stuff for main image
   const img = theWork.mainImage
             ? urlFor(theWork.mainImage)?.url()
             : null;
+  
+  const images: GalleryImage[] = theWork.gallery?.map((item) => ({
+    src: item.asset?._ref ? urlFor(item.asset._ref)?.url() ?? null : null,
+    width: 240,
+    height: 240,
+    alt: item.altText ? item.altText : null,
+  })) || [];
+            
+  
+
   // render title, dates, description, image, and video
   return (
     <main className={pageStyles.main}>
@@ -73,7 +79,9 @@ export default async function DetailWorks({
             />
           </div>
       }
-
+      <div className={styles.bodyWrapper}>
+        <Gallery images={images} buttons={true}/>
+      </div>
       {
         theWork.body &&
           <div className={styles.bodyWrapper}>
@@ -88,24 +96,38 @@ export default async function DetailWorks({
             />
           </div>
       }
-      {
-        workData.exhibitionDetails &&
-          <ul className={styles.exDetailsWrapper} >
-            Work Exhibited:
-            {
-              workData.exhibitionDetails.map((deet) => (
-                <li className={styles.deetWraper} key={`deets-${deet.dateRange.from}`}>
-                  <h3>{deet.exhibitionName}</h3>
-                  <p className={style.}><DateDisplay date={deet.dateRange.from}/></p>
-                  {
-                    deet.dateRange.to &&
-                      <p><DateDisplay date={deet.dateRange.from}/></p>
-                  }
-                </li>
-              ))
-            }
-          </ul>
-      } 
+      {workData.exhibitionDetails && workData.exhibitionDetails.length > 0 && (
+        <ul className={styles.bodyWrapper}>
+          <h2 className={styles.deetsTitle}>Work Exhibited:</h2>
+          {workData.exhibitionDetails.map((deet: {
+            dateRange?: {
+              from?: string;
+              to?: string;
+            };
+            location?: {
+              venue?: string;
+              city?: string;
+              country?: string;
+            };
+            exhibitionName?: string;
+            _key: string;
+          }, idx: number) => (
+            <li className={styles.deetWrapper} key={`deets-${idx}`}>
+              <p className={styles.deetBody}>
+                {deet.exhibitionName}
+                <span className={styles.deetDate}>
+                  <DateDisplay date={deet.dateRange?.from || 'null'} />
+                </span>
+                {deet.dateRange?.to && (
+                  <span> - <DateDisplay date={deet.dateRange.to} /></span>
+                )}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      
       
 
     </main>

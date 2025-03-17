@@ -1,0 +1,55 @@
+.embla {
+  overflow: hidden;
+  position: relative;
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.embla__slide__image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.embla__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.embla__buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.embla__dots {
+  display: flex;
+  gap: 5px;
+}
+
+.embla__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: gray;
+  cursor: pointer;
+}
+
+.embla__dotSelected {
+  background: black;
+}

@@ -17,7 +17,9 @@ const CALENDAR_QUERY = defineQuery(`
   *[_type == "calendar"]
 `);
 const LATEST_WORK_QUERY = defineQuery(`
-  *[_type == "post"][0]
+  *[_type == "post"]
+   |order(exhibitionDetails[0].dateRange.from desc)
+  [0]
 `);
 
 const { projectId, dataset } = client.config();

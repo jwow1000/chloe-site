@@ -14,8 +14,8 @@ export default async function handler(req, res) {
       await res.revalidate("/works");
     } else if (type === "bio") {
       await res.revalidate("/bio");
-    } else if (type === "bio") {
-      await res.revalidate("/bio");
+    } else if (type === "/calendar") {
+      await res.revalidate("/calendar");
     } else {
       await res.revalidate("/"); // Fallback for homepage
     }

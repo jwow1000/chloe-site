@@ -50,6 +50,9 @@
   margin-right: auto;
   z-index: 100;
 }
+.button:hover {
+  color: pink;
+}
 .rightButton {
   margin-right: 0;
   margin-left: auto;

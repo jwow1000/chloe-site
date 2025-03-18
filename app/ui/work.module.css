@@ -53,7 +53,7 @@
 }
 .galleryWrapper {
   width: 60vw;
-  height: 60vw;
+  height: 40vw;
   margin: 0 auto;
 }
 
@@ -68,7 +68,7 @@
   }
   .galleryWrapper {
     width: 80%;
-    height: 80vw;
+    height: 60vw;
   }
 }
 /* mobile */
@@ -87,6 +87,6 @@
   }
   .galleryWrapper {
     width: 95%;
-    height: 95vw;
+    height: 60vw;
   }
 }

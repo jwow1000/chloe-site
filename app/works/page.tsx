@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
 import { client } from "@/sanity/client";
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
@@ -7,8 +8,6 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 import { Post } from "../types/types";
 import styles from "@/app/ui/page.module.css";
-
-
 
 const POSTS_QUERY = defineQuery(`
   *[_type == "post"]

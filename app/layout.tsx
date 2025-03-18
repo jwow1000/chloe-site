@@ -5,14 +5,14 @@ import Nav from "./components/nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Chloe Engel official website",
-  description: "An archive of past works by Chloe Engel, and a Calendar of upcoming events",
+  title: "Chloë Engel",
+  description: "An archive of performance and art works by Chloe Engel, and a Calendar of upcoming events",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode;  
 }>) {
   return (
     <html lang="en">

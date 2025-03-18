@@ -37,7 +37,7 @@ export default function Nav() {
                 home
               </Link>
               <Link href={`/works`} className={pageStyles.workLink} >
-                collected works
+                works
               </Link>
               <Link href={`/bio`} className={pageStyles.workLink} >
                 bio

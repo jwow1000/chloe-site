@@ -30,7 +30,7 @@ export default async function Works() {
   console.log("data: ", posts );
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>Events</h1>
+      <h1 className={styles.title}>Works</h1>
       <ul className={styles.postList}>
         {
           posts.map((post) => {

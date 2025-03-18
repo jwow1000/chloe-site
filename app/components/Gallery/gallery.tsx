@@ -16,6 +16,7 @@ export default function Gallery({ images, buttons }: { images: GalleryImage[], b
 
   // click handle
   const handleClick = (up: boolean) => {
+    console.log("we clicked", up)
     if( up ) {
       setIndex((prev) => (prev+1) > size-1 ? 0 : prev+1);
     } else {
@@ -24,41 +25,44 @@ export default function Gallery({ images, buttons }: { images: GalleryImage[], b
   }
 
   return (
-    <div >
-      <div className={styles.galleryWrapper}>
-        <div 
-          className={styles.leftField} 
-          onClick={() => handleClick(false)}
-        ></div>
-        <div 
-          className={styles.rightField}
-          onClick={() => handleClick(true)}
-        ></div>
-        {
-          images.length > 0 && (
-            <div className={styles.wrapper}>
-              <div className={styles.itemWrapper}>
-                <Image
-                  className={styles.item}
-                  src={images[index].src || placeholder}
-                  alt={images[index].alt || "no image description"}
-                  width={images[index].width}
-                  height={images[index].height}
-                />
-              </div>
-            </div>
-          )
-        }
-        
-        {
-          buttons &&
-            <div className={styles.buttonsWrapper}>
-              <button className={styles.leftButton}>{'<'}</button>
-              <button className={styles.rightButton}>{'>'}</button>
-            </div>
+    <div className={styles.wrapper}>
+      <div 
+        className={`${styles.field}`} 
+        onClick={() => handleClick(false)}
+      ></div>
+      <div 
+        className={`${styles.field} ${styles.right}`} 
+        onClick={() => handleClick(true)}
+      ></div>
+      {
+        images.length > 0 && (
+          <div className={styles.itemWrapper}>
+            <Image
+              className={styles.item}
+              src={images[index].src || placeholder}
+              alt={images[index].alt || "no image description"}
+              width={images[index].width}
+              height={images[index].height}
+            />
+          </div>
+        )
+      }
+      
+      {
+        buttons &&
+          <div className={styles.buttonsWrapper}>
+            <button 
+              className={styles.button}
+              onClick={() => handleClick(false)}
 
-        }
-      </div>
+            >{'<'}</button>
+            <button 
+              className={`${styles.button} ${styles.rightButton}`}
+              onClick={() => handleClick(true)}
+            >{'>'}</button>
+          </div>
+
+      }
     </div>
   )
 }

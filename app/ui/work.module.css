@@ -1,7 +1,10 @@
-.imageWrapper {
-  width: 20rem;
-  height: 20rem;
-  margin-right: auto;
+.mainImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7rem;
+  height: 7rem;
+  margin: 2rem;
 }
 .containImage {
   width: 100%;
@@ -42,9 +45,15 @@
 .bodyWrapper {
   width: 60vw;
   max-width: 60ch;
+  padding: 1rem;
   margin: 0 auto;
   font-size: 1.25rem;
   line-height: 180%;
+}
+.galleryWrapper {
+  width: 60vw;
+  height: 60vw;
+  margin: 0 auto;
 }
 
 /* tablet */
@@ -55,6 +64,10 @@
   .bodyWrapper {
     width: 80%;
     font-size: 1rem;
+  }
+  .galleryWrapper {
+    width: 80%;
+    height: 80vw;
   }
 }
 /* mobile */
@@ -70,5 +83,9 @@
   .videoWrapper {
     width: 90vw;
     height: 90vw;
+  }
+  .galleryWrapper {
+    width: 95%;
+    height: 95vw;
   }
 }

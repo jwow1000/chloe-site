@@ -69,7 +69,7 @@ export default async function DetailWorks({
       
       {
         theWork.mainImage &&
-          <div className={styles.imageWrapper}>
+          <div className={styles.mainImageWrapper}>
             <Image
               src={img || "https://placehold.co/550x310/png"}
               alt={theWork.title || "Post"}
@@ -79,7 +79,7 @@ export default async function DetailWorks({
             />
           </div>
       }
-      <div className={styles.bodyWrapper}>
+      <div className={styles.galleryWrapper}>
         <Gallery images={images} buttons={true}/>
       </div>
       {

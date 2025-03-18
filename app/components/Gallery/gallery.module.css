@@ -6,19 +6,17 @@
   flex-direction: row;
 
 }
-.leftField {
+.field {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 50%;
+  z-index: 1;
 }
-.rightField {
-  position: absolute;
+.right {
+  left: auto;
   right: 0;
-  top: 0;
-  height: 100%;
-  width: 50%;
 }
 
 .itemWrapper {
@@ -32,3 +30,23 @@
   object-fit: contain;
 }
 
+.buttonsWrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+}
+.button {
+  color: white;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  margin-right: auto;
+  z-index: 100;
+}
+.rightButton {
+  margin-right: 0;
+  margin-left: auto;
+}

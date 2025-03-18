@@ -9,6 +9,12 @@ import imageUrlBuilder from "@sanity/image-url";
 import { Post } from "../types/types";
 import styles from "@/app/ui/page.module.css";
 
+export const metadata: Metadata = {
+  title: "Chloë Engel Works",
+  description: "An archive of performance and art works by Chloe Engel, Including Rubber, The Organ, famousley you squeeze me",
+};
+
+
 const POSTS_QUERY = defineQuery(`
   *[_type == "post"]
   |order(date desc)

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { spaceGrotesk } from "./ui/fonts";
-import { SanityLive } from "@/sanity/live";
 import Nav from "./components/nav";
 import "./globals.css";
 
@@ -19,7 +18,6 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.className} antialiased`}>
         <Nav />
         {children}
-        <SanityLive />
       </body>
     </html>
   );

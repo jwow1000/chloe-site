@@ -79,9 +79,12 @@ export default async function DetailWorks({
             />
           </div>
       }
-      <div className={styles.galleryWrapper}>
-        <Gallery images={images} buttons={true}/>
-      </div>
+      {
+        images && images.length > 0 &&
+        <div className={styles.galleryWrapper}>
+          <Gallery images={images} buttons={true}/>
+        </div>
+      }
       {
         theWork.body &&
           <div className={styles.bodyWrapper}>

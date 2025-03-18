@@ -4,6 +4,8 @@ interface DateDisplayProps {
   date: string; // Expecting a date string in 'yyyy-mm-dd' format
 }
 export const DateDisplay: React.FC<DateDisplayProps> = ({ date }) => {
+  console.log("ugh dates: ", date)
+  if( date == "null" ) return <span></span>
   const formatDate = (dateString: string) => {
     const dateObj = new Date(dateString);
 
@@ -16,5 +18,5 @@ export const DateDisplay: React.FC<DateDisplayProps> = ({ date }) => {
     return new Intl.DateTimeFormat('en-US', options).format(dateObj);
   };
 
-  return <span>{formatDate(date)}</span>;
+  return <span>{formatDate( date )}</span>;
 };

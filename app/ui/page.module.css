@@ -40,6 +40,10 @@
   margin: 2rem 0;
 }
 
+.coverText {
+  margin: 0 2rem;
+}
+
 .content {
   padding: 2rem;
   display: flex;

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { slug, type } = req.body;
+    const { type } = req.body;
 
     if (type === "works") {
       await res.revalidate("/works");
@@ -22,6 +22,6 @@ export default async function handler(req, res) {
 
     return res.json({ revalidated: true });
   } catch (err) {
-    return res.status(500).json({ message: "Error revalidating" });
+    return res.status(500).json({ message: `Error revalidating: ${err}` });
   }
 }

@@ -5,6 +5,7 @@
   width: 7rem;
   height: 7rem;
   margin: 2rem;
+  z-index: -1000;
 }
 .containImage {
   width: 100%;

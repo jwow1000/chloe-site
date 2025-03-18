@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/client";
+import { DateDisplay } from "./helpers/conversions";
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -100,10 +101,10 @@ export default async function Home() {
               calendarArray.map((calItem) => {
                 return (
                   <li className={styles.calendarListItem} key={`calendar item: ${calItem.title}`}>
-                    {calItem.dateRange?.from}
+                    {<DateDisplay date={calItem.dateRange?.from} />}
                     {
-                      calItem.dateRange?.to && 
-                      ` > ${calItem.dateRange.to}`
+                      calItem.dateRange?.to &&
+                          <DateDisplay date={calItem.dateRange?.to} />
                     }
                     { calItem.title && ` ~ ${calItem.title}` }
                     { calItem.location && ` ~ ${calItem.location}` }

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const POSTS_QUERY = defineQuery(`
   *[_type == "post"]
-  |order(date desc)
+  |order(exhibitionDetails[0].dateRange.from desc)
 `);
 
 // image setup

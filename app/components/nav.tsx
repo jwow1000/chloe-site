@@ -33,7 +33,6 @@ export default function Nav() {
         displayMenu &&
          
           <menu className={styles.menuWrapper} onClick={handleClick}>
-            <div className={styles.menuOverlay}></div>
             <ul className={styles.linksWrapper}>
               <Link href={`/`} className={pageStyles.workLink} >
                 home
@@ -46,6 +45,12 @@ export default function Nav() {
               </Link>
             </ul>
           </menu>
+      }
+      {
+        displayMenu &&
+        <div className={styles.menuOverlay} onClick={handleClick}>
+            
+        </div>
       }
 
     </nav>

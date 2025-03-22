@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceGrotesk.className} antialiased`}>
+      <body className={`${spaceGrotesk.className} antialiased globalBody`}>
         <Nav />
         {children}
       </body>

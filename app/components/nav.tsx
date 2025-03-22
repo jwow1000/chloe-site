@@ -39,8 +39,8 @@ export default function Nav() {
               <Link href={`/works`} className={pageStyles.workLink} >
                 works
               </Link>
-              <Link href={`/bio`} className={pageStyles.workLink} >
-                bio
+              <Link href={`/cv`} className={pageStyles.workLink} >
+                cv
               </Link>
             </ul>
           </menu>

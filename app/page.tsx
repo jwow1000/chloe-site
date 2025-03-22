@@ -72,6 +72,7 @@ export default async function Home() {
           />
         </div>
         <div className={styles.worksLinksWrapper}>
+          <div className={styles.worksLinksTitle}>recent works</div>
           {
             workInfo &&
               <Link

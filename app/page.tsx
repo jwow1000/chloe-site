@@ -48,12 +48,12 @@ export default async function Home() {
     : null;
   
   // get latest work( posts )
-  const { data: work } = await sanityFetch({ query: LATEST_WORK_QUERY });
-  const workInfo: Post = work;
-  const workImgAlt = workInfo.mainImage?.asset?._ref ? workInfo.mainImage?.asset?._ref : "#";
-  const workImgUrl = workInfo.mainImage?.asset?._ref 
-    ? urlFor(workInfo.mainImage?.asset?._ref)?.url() 
-    : null;
+  // const { data: work } = await sanityFetch({ query: LATEST_WORK_QUERY });
+  // const workInfo: Post = work;
+  // const workImgAlt = workInfo.mainImage?.asset?._ref ? workInfo.mainImage?.asset?._ref : "#";
+  // const workImgUrl = workInfo.mainImage?.asset?._ref 
+  //   ? urlFor(workInfo.mainImage?.asset?._ref)?.url() 
+  //   : null;
 
 
   return (

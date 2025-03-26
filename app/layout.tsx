@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { spaceGrotesk } from "./ui/fonts";
+import { baskerville } from "./ui/fonts";
 import Nav from "./components/nav";
 import "./globals.css";
 
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceGrotesk.className} antialiased globalBody`}>
+      <body className={`${baskerville.className} antialiased globalBody`}>
         <Nav />
         {children}
       </body>

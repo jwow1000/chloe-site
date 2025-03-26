@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/client";
-import { DateDisplay } from "./helpers/conversions";
+// import { DateDisplay } from "./helpers/conversions";
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -60,77 +60,75 @@ export default async function Home() {
     <main className={styles.main}>
       <h1 className={styles.title}>Chloë Engel</h1>
       <p className={styles.coverText}>{homeInfo.coverText}</p>
-      <section className={styles.content}>
 
-        <div className={styles.coverImage}>
-          <Image
-            src={imgUrl || "https://placehold.co/550x310/png"}
-            alt={homeImgAlt}
-            className={styles.containImage}
-            height="310"
-            width="550" 
-          />
-        </div>
-        <div className={styles.worksLinksWrapper}>
-          <div className={styles.worksLinksTitle}>recent works</div>
+      <div className={styles.coverImage}>
+        <Image
+          src={imgUrl || "https://placehold.co/550x310/png"}
+          alt={homeImgAlt}
+          className={styles.containImage}
+          height="310"
+          width="550" 
+        />
+      </div>
+      {/* <div className={styles.worksLinksWrapper}>
+        <div className={styles.worksLinksTitle}>recent works</div>
+        {
+          workInfo &&
+            <Link
+              className={styles.workLink} 
+              href={`/works/${workInfo.slug?.current}`}
+              key={`works-${work.title}`}
+            >
+              <div>
+                {` ~ `}
+                <span className={styles.workTitle}>{ workInfo.title && `${workInfo.title} `}</span> {` ~ `}
+                <span className={styles.workDate}>{ workInfo?.exhibitionDetails?.[0]?.dateRange?.from && `${workInfo?.exhibitionDetails[0].dateRange.from}`} </span>
+              </div>
+              <Image 
+                src={workImgUrl || "https://placehold.co/550x310/png"}
+                alt={workImgAlt}
+                className={styles.containImage}
+                height="310"
+                width="550" 
+              />
+            </Link>
+        }
+      </div> */}
+      {/* <div className={styles.calendarWrapper}>
+        <h2 className={styles.calendarTitle}>Calendar/ Upcoming Events</h2>   
+        <ul className={styles.calendarList}>
           {
-            workInfo &&
-              <Link
-                className={styles.workLink} 
-                href={`/works/${workInfo.slug?.current}`}
-                key={`works-${work.title}`}
-              >
-                <div>
-                  {` ~ `}
-                  <span className={styles.workTitle}>{ workInfo.title && `${workInfo.title} `}</span> {` ~ `}
-                  <span className={styles.workDate}>{ workInfo?.exhibitionDetails?.[0]?.dateRange?.from && `${workInfo?.exhibitionDetails[0].dateRange.from}`} </span>
-                </div>
-                <Image 
-                  src={workImgUrl || "https://placehold.co/550x310/png"}
-                  alt={workImgAlt}
-                  className={styles.containImage}
-                  height="310"
-                  width="550" 
-                />
-              </Link>
-          }
-        </div>
-        <div className={styles.calendarWrapper}>
-          <h2 className={styles.calendarTitle}>Calendar/ Upcoming Events</h2>   
-          <ul className={styles.calendarList}>
-            {
-              calendarArray.map((calItem) => {
-                return (
-                  <li className={styles.calendarListItem} key={`calendar item: ${calItem.title}`}>
-                    {<DateDisplay date={calItem.dateRange?.from} />}
-                    {
-                      calItem.dateRange?.to &&
-                          <DateDisplay date={calItem.dateRange?.to} />
-                    }
-                    { calItem.title && ` ~ ${calItem.title}` }
-                    { calItem.location && ` ~ ${calItem.location}` }
-                    
-                    {
-                      calItem.externalLink?.url &&
-                        <Link 
-                          href={calItem.externalLink.url} 
-                          className={styles.calLinks}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {` ~ ${calItem.externalLink.title}`}
-                        </Link>
-    
-                    }
-    
-                  </li>
-                )}
+            calendarArray.map((calItem) => {
+              return (
+                <li className={styles.calendarListItem} key={`calendar item: ${calItem.title}`}>
+                  {<DateDisplay date={calItem.dateRange?.from} />}
+                  {
+                    calItem.dateRange?.to &&
+                        <DateDisplay date={calItem.dateRange?.to} />
+                  }
+                  { calItem.title && ` ~ ${calItem.title}` }
+                  { calItem.location && ` ~ ${calItem.location}` }
+                  
+                  {
+                    calItem.externalLink?.url &&
+                      <Link 
+                        href={calItem.externalLink.url} 
+                        className={styles.calLinks}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {` ~ ${calItem.externalLink.title}`}
+                      </Link>
+  
+                  }
+  
+                </li>
+              )}
 
-              ) 
-            }
-          </ul>
-        </div>
-      </section>
+            ) 
+          }
+        </ul>
+      </div> */}
     </main>
   );
 }

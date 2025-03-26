@@ -1,5 +1,6 @@
 .main {
-  margin: 5rem 0 10rem 0;
+  /* margin: 5rem 0 10rem 0; */
+  padding: 6rem 0 10rem 0 ;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,8 +36,7 @@
 .title {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 2rem;
   margin: 2rem 0;
 }
 
@@ -53,8 +53,12 @@
   gap: 2rem;
 }
 .coverImage {
-  width: 30rem;
-  height: 30rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .previewImageWrapper {
@@ -63,7 +67,7 @@
 }
 
 .containImage {
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
   height: 100%;
   /* backdrop-filter: ; */
@@ -163,9 +167,6 @@
   } 
   .workLink {
     width: 13rem;
-  }
-  .coverImage {
-    width: 20rem;
   }
 }
 /* mobile */

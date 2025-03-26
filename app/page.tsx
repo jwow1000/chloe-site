@@ -1,4 +1,4 @@
-import Link from "next/link";
+// import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/client";
 // import { DateDisplay } from "./helpers/conversions";
@@ -6,7 +6,8 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
-import { Homepage, Calendar, Post } from "./types/types";
+// import { Homepage, Calendar, Post } from "./types/types";
+import { Homepage } from "./types/types";
 import styles from "@/app/ui/page.module.css";
 
 
@@ -14,14 +15,14 @@ const HOME_QUERY = defineQuery(`
   *[_type == "homepage"][0]
 `);
 
-const CALENDAR_QUERY = defineQuery(`
-  *[_type == "calendar"]
-`);
-const LATEST_WORK_QUERY = defineQuery(`
-  *[_type == "post"]
-   |order(exhibitionDetails[0].dateRange.from desc)
-  [0]
-`);
+// const CALENDAR_QUERY = defineQuery(`
+//   *[_type == "calendar"]
+// `);
+// const LATEST_WORK_QUERY = defineQuery(`
+//   *[_type == "post"]
+//    |order(exhibitionDetails[0].dateRange.from desc)
+//   [0]
+// `);
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -38,8 +39,8 @@ export default async function Home() {
   const homeInfo: Homepage = home;
   
   // calendar items
-  const { data: calendarInfo } = await sanityFetch({ query: CALENDAR_QUERY });
-  const calendarArray: Calendar[] = calendarInfo;
+  // const { data: calendarInfo } = await sanityFetch({ query: CALENDAR_QUERY });
+  // const calendarArray: Calendar[] = calendarInfo;
   
   // extract home image
   const homeImgAlt = homeInfo.altText ? homeInfo.altText : "#";

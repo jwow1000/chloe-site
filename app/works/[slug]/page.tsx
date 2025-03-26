@@ -2,6 +2,7 @@
 import { Post } from "@/app/types/types";
 import { client } from "@/sanity/client";
 import Image from "next/image";
+import Link from "next/link";
 import { GalleryImage } from "@/app/types/localTypes";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
@@ -66,7 +67,7 @@ export default async function DetailWorks({
   return (
     <main className={pageStyles.main}>
       <h1 className={pageStyles.title}>{theWork.title}</h1>
-      
+      <Link className={pageStyles.postLink} href={'/works'}>{'<-- back to works'}</Link> 
       {
         theWork.mainImage &&
           <div className={styles.mainImageWrapper}>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { baskerville } from "./ui/fonts";
 import Nav from "./components/nav";
+import Footer from "./components/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body className={`${baskerville.className} antialiased globalBody`}>
         <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
   /* margin: 5rem 0 10rem 0; */
   padding: 6rem 0 10rem 0 ;
   display: flex;
+  min-height: calc(100vh - 2rem);
   flex-direction: column;
   justify-content: center;
   gap: 1rem;

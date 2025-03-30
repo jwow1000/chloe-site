@@ -43,6 +43,10 @@
 
 .coverText {
   margin: 0 2rem;
+  padding: 1rem;
+  width: fit-content; 
+  display: inline-block;
+  backdrop-filter: invert(100%);
 }
 
 .content {
@@ -173,7 +177,7 @@
 /* mobile */
 @media (max-width: 599px) {
   .navWrapper {
-    right: 0rem;
-    top: 0rem;
+    right: 0.25rem;
+    top: 0.25rem;
   } 
 }

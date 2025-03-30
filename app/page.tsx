@@ -60,7 +60,7 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Chloë Engel</h1>
-      <p className={styles.coverText}>{homeInfo.coverText}</p>
+      <div className={styles.coverText}>{homeInfo.coverText}</div>
 
       <div className={styles.coverImage}>
         <Image

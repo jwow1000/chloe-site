@@ -1,6 +1,5 @@
 .main {
-  /* margin: 5rem 0 10rem 0; */
-  padding: 6rem 0 10rem 0 ;
+  padding: 6rem 6rem 10rem 0 ;
   display: flex;
   min-height: calc(100vh - 2rem);
   flex-direction: column;
@@ -39,14 +38,19 @@
   top: 0;
   left: 2rem;
   margin: 2rem 0;
+  font-size: 1.5rem;
+  font-weight: 200;
 }
 
 .coverText {
+  color: white;
   margin: 0 2rem;
-  padding: 1rem;
   width: fit-content; 
+  max-width: 74ch;
   display: inline-block;
-  backdrop-filter: invert(100%);
+}
+.coverText p {
+  margin-bottom: 2rem;
 }
 
 .content {
@@ -176,6 +180,15 @@
 }
 /* mobile */
 @media (max-width: 599px) {
+  .main {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .coverText {
+    padding-left: 0;
+    margin-left: 1rem;
+    margin-right: 0;
+  }
   .navWrapper {
     right: 0.25rem;
     top: 0.25rem;

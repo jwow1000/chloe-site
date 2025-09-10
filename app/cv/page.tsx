@@ -7,7 +7,7 @@ export default async function Cv() {
    
   return (
     <div className={styles.main}>
-      <h1 className={styles.title}>Chloe Engel CV</h1>
+      <h1 className={styles.title}>Chloë Engel CV</h1>
       <div className={styles.cvBodyWrapper}>
         <iframe
           src="https://docs.google.com/document/d/your-doc-id/pub?embedded=true"

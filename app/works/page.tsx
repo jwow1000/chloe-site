@@ -6,7 +6,8 @@ import { defineQuery } from "next-sanity";
 import { sanityFetch } from "@/sanity/live";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
-import { Post } from "../types/types";
+import { Post } from "@/app/types/sanity.types";
+import { readableDate } from "../helpers/conversions";
 import styles from "@/app/ui/page.module.css";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 
 const POSTS_QUERY = defineQuery(`
   *[_type == "post"]
-  |order(exhibitionDetails[0].dateRange.from desc)
+  |order(workDate desc)
 `);
 
 // image setup
@@ -50,7 +51,10 @@ export default async function Works() {
                   href={`/works/${post.slug?.current}`}
                 >
                   <h2>{post.title}</h2>
-                 
+                  {
+                    post.workDate &&
+                      <h6>{readableDate(post.workDate, 1)}</h6>
+                  }
                   <div className={styles.previewImageWrapper}>
                     <Image
                       src={img || "https://placehold.co/550x310/png"}

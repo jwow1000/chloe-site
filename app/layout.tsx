@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import { baskerville } from "./ui/fonts";
+import { Open_Sans } from "next/font/google";
 import Nav from "./components/nav";
-import Footer from "./components/footer";
+// import Footer from "./components/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Chloë Engel",
   description: "An archive of performance and art works by Chloe Engel, and a Calendar of upcoming events",
 };
+
+// Load the font
+const openSans = Open_Sans({
+  subsets: ["latin"],   // required
+  variable: "--font-open-sans", // optional: CSS variable for Tailwind or custom usage
+  display: "swap", // optional: control font-display
+});
 
 export default function RootLayout({
   children,
@@ -16,10 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${baskerville.className} antialiased globalBody`}>
+      <body className={`${openSans.variable} antialiased globalBody`}>
         <Nav />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

@@ -1,3 +1,10 @@
+:root {
+  --chloe-blue: 93,181,249;
+  --chloe-orange: 241,150,91;
+  --chloe-yellow: 250,222,112;
+  --chloe-green: 206, 252, 133;
+}
+
 html,
 body {
   max-width: 100vw;

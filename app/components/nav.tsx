@@ -1,57 +1,36 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
-import RandomLine from "./randomLine";
-import pageStyles from "@/app/ui/page.module.css";
 import styles from "@/app/ui/nav.module.css";
 
 export default function Nav() {
-  const [lineReDraw, setLineReDraw] = useState<boolean>(false);
-  const [displayMenu, setDisplayMenu] = useState<boolean>(false);
 
-  function handleClick() {
-    setLineReDraw((prev) => !prev);
-    setDisplayMenu((prev) => !prev);
-  }
 
   return (
     <nav className={styles.navWrapper}>
-      <button
-        className={styles.randomLineWrapper}
-        onClick={handleClick}
-      >
-        <RandomLine trig={lineReDraw}/>
-        <menu className={styles.menuTitle}>
-          {
-            displayMenu ?
-              'menu ▼'
-              : 'menu ►'
-          }
-        </menu>
-      </button>
-      {
-        displayMenu &&
+      
          
-          <menu className={styles.menuWrapper} onClick={handleClick}>
-            <ul className={styles.linksWrapper}>
-              <Link href={`/`} className={pageStyles.workLink} >
-                home
-              </Link>
-              <Link href={`/works`} className={pageStyles.workLink} >
-                works
-              </Link>
-              <Link href={`/cv`} className={pageStyles.workLink} >
-                cv
-              </Link>
-            </ul>
-          </menu>
-      }
-      {
-        displayMenu &&
-        <div className={styles.menuOverlay} onClick={handleClick}>
-            
-        </div>
-      }
+      <menu className={styles.menuWrapper}>
+        <ul className={`${styles.linksWrapper} ${styles.blue}`}>
+          <Link 
+            href={`/`} 
+            title="home" 
+            className={`${styles.navLink} ${styles.blue}`} 
+          >
+          </Link>
+          <Link 
+            href={`/works`} 
+            title="works" 
+            className={`${styles.navLink} ${styles.orange}`} 
+          >
+          </Link>
+          <Link 
+            href={`/cv`} 
+            title="cv" 
+            className={`${styles.navLink} ${styles.yellow}`} 
+          >
+          </Link>
+        </ul>
+      </menu>
 
     </nav>
   );

@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   display: grid;
-  grid-template-columns: [infoWrapper]0.45fr [media]1fr;
+  grid-template-columns: minmax(250px, .45fr) [media]1fr;
 }
 .link {
   color: white;

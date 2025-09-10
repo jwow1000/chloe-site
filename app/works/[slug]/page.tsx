@@ -45,7 +45,7 @@ export default async function DetailWorks({
     return <div>Work not found</div>;
   }
 
-  // console.log("the data: ", theWork);
+  console.log("the data: ", theWork);
   // picture sanity stuff for main image
   // const img = theWork.mainImage ? urlFor(theWork.mainImage)?.url() : null;
 

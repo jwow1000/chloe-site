@@ -4,8 +4,7 @@ import Link from "next/link";
 import { GalleryImage } from "@/app/types/localTypes";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
-import { defineQuery } from "next-sanity";
-import { sanityFetch } from "@/sanity/live";
+import { getWork } from "@/sanity/fetch";
 import { PortableText } from "next-sanity";
 import { Post } from "@/app/types/sanity.types";
 import Gallery from "@/app/components/Gallery/gallery";
@@ -13,9 +12,7 @@ import VimeoEmbed from "@/app/components/vimeoEmbed";
 import styles from "@/app/ui/work.module.css";
 import pageStyles from "@/app/ui/page.module.css";
 
-const WORK_QUERY = defineQuery(`
-  *[_type == "post" && slug.current == $slug][0]
-`);
+
 
 // image setup
 const { projectId, dataset } = client.config();
@@ -35,17 +32,13 @@ export default async function DetailWorks({
   }
   const slug = (await params).slug;
   // Fetch the work data using the slug
-  const { data: workData } = await sanityFetch<string>({
-    query: WORK_QUERY,
-    params: { slug }, // Pass slug to the query
-  });
-  const theWork: Post = workData;
+  const theWork: Post = await getWork(slug);
 
   if (!theWork) {
     return <div>Work not found</div>;
   }
 
-  console.log("the data: ", theWork);
+  // console.log("the data: ", theWork);
   // picture sanity stuff for main image
   // const img = theWork.mainImage ? urlFor(theWork.mainImage)?.url() : null;
 
@@ -81,10 +74,9 @@ export default async function DetailWorks({
             <Gallery images={images} buttons={true} />
           </div>
         )}
-        
-        {workData.videoLink && (
+        {theWork.videoLink && (
           <div className={styles.vimeoWrapper}>
-            <VimeoEmbed url={workData.videoLink} />
+            <VimeoEmbed url={theWork.videoLink} />
           </div>
         )}
         </div>

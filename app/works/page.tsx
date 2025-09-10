@@ -2,8 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 import { client } from "@/sanity/client";
-import { defineQuery } from "next-sanity";
-import { sanityFetch } from "@/sanity/live";
+import { getWorks } from "@/sanity/fetch";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 import { Post } from "@/app/types/sanity.types";
@@ -16,10 +15,7 @@ export const metadata: Metadata = {
 };
 
 
-const POSTS_QUERY = defineQuery(`
-  *[_type == "post"]
-  |order(workDate desc)
-`);
+
 
 // image setup
 const { projectId, dataset } = client.config();
@@ -30,10 +26,8 @@ const urlFor = (source: SanityImageSource) =>
 
 
 export default async function Works() {
-  const { data: postData } = await sanityFetch({ query: POSTS_QUERY });
-  const posts: Post[] = postData;
+  const posts: Post[] = await getWorks();
 
-  console.log("data: ", posts );
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>Works</h1>

@@ -180,6 +180,9 @@
 }
 /* mobile */
 @media (max-width: 599px) {
+  .title {
+    left: 1rem;
+  }
   .main {
     padding-left: 0;
     padding-right: 0;

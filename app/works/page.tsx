@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import { Metadata } from "next";
 import { client } from "@/sanity/client";
 import { getWorks } from "@/sanity/fetch";
@@ -49,7 +49,7 @@ export default async function Works() {
                     post.workDate &&
                       <h6>{readableDate(post.workDate, 1)}</h6>
                   }
-                  <div className={styles.previewImageWrapper}>
+                  {/* <div className={styles.previewImageWrapper}>
                     <Image
                       src={img || "https://placehold.co/550x310/png"}
                       alt={post.title || "Post"}
@@ -57,7 +57,7 @@ export default async function Works() {
                       height="310"
                       width="550" 
                     />
-                  </div>
+                  </div> */}
                 </Link>
               </li>
             )

@@ -12,7 +12,7 @@ export default function Gallery({ images, buttons }: { images: GalleryImage[], b
 
   useEffect(() => {
     setSize(images.length);
-  },[]);
+  },[images.length]);
 
   // click handle
   const handleClick = (up: boolean) => {

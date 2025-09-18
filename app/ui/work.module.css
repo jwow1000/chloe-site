@@ -4,6 +4,11 @@
   margin: 2rem;
   z-index: -1000;
 }
+.workDetailWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .bigWrapper {
   width: calc(100vw - 8rem);
   height: 100vh;

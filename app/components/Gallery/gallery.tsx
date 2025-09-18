@@ -16,7 +16,6 @@ export default function Gallery({ images, buttons }: { images: GalleryImage[], b
 
   // click handle
   const handleClick = (up: boolean) => {
-    console.log("we clicked", up)
     if( up ) {
       setIndex((prev) => (prev+1) > size-1 ? 0 : prev+1);
     } else {

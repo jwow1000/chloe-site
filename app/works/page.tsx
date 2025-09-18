@@ -15,7 +15,6 @@ export default async function Works() {
 
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>Works</h1>
       <div className={styles.worksWrapper}>
         {
           works.map((work) => (

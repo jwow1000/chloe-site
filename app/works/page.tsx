@@ -6,7 +6,7 @@ import styles from "@/app/ui/work.module.css";
 
 export const metadata: Metadata = {
   title: "Chloë Engel Works",
-  description: "An archive of performance and art works by Chloe Engel, Including Rubber, The Organ, famousley you squeeze me",
+  description: "An archive of performance and art works by Chloë Engel, Including Rubber, The Organ, famousley you squeeze me",
 };
 
 

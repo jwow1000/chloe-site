@@ -85,7 +85,7 @@ export default async function Home() {
             />
           )}
           {calendarEntry?.body && (
-            <div className="text-fg text-[12px] italic w-full max-w-[300px] inline-block my-6">
+            <div className="text-fg text-[12px] italic w-full inline-block my-6">
               <PortableText
                 value={calendarEntry.body}
                 components={portableTextComponents}

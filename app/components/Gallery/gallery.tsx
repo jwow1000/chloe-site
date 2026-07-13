@@ -1,67 +1,52 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { GalleryImage } from "@/app/types/localTypes";
-import placeholder from "@/public/file.svg";
-import styles from "./gallery.module.css";
 
+export default function Gallery({ images }: { images: GalleryImage[] }) {
+  const [index, setIndex] = useState(0);
 
-export default function Gallery({ images, buttons }: { images: GalleryImage[], buttons: boolean }) {
-  const [index, setIndex] = useState<number>(0);
-  const [size, setSize] = useState<number>(0);
-
-  useEffect(() => {
-    setSize(images.length);
-  },[images.length]);
-
-  // click handle
-  const handleClick = (up: boolean) => {
-    if( up ) {
-      setIndex((prev) => (prev+1) > size-1 ? 0 : prev+1);
-    } else {
-      setIndex((prev) => (prev-1) < 0 ? size-1 : prev-1);
-    }
+  if (images.length === 0) {
+    return null;
   }
 
+  const current = images[index];
+
+  const showPrev = () =>
+    setIndex((prev) => (prev - 1 + images.length) % images.length);
+  const showNext = () => setIndex((prev) => (prev + 1) % images.length);
+
   return (
-    <div className={styles.wrapper}>
-      <div 
-        className={`${styles.field}`} 
-        onClick={() => handleClick(false)}
-      ></div>
-      <div 
-        className={`${styles.field} ${styles.right}`} 
-        onClick={() => handleClick(true)}
-      ></div>
-      {
-        images.length > 0 && (
-          <div className={styles.itemWrapper}>
-            <Image
-              className={styles.item}
-              src={images[index].src || placeholder}
-              alt={images[index].alt || "no image description"}
-              width={images[index].width}
-              height={images[index].height}
-            />
-          </div>
-        )
-      }
-      
-      {
-        buttons &&
-          <div className={styles.buttonsWrapper}>
-            <button 
-              className={styles.button}
-              onClick={() => handleClick(false)}
-
-            >{'<'}</button>
-            <button 
-              className={`${styles.button} ${styles.rightButton}`}
-              onClick={() => handleClick(true)}
-            >{'>'}</button>
-          </div>
-
-      }
+    <div className="flex flex-col items-center gap-4 w-full">
+      <div className="relative w-full aspect-square">
+        {current.src && (
+          <Image
+            className="w-full h-full object-contain"
+            src={current.src}
+            alt={current.alt || "no image description"}
+            width={current.width}
+            height={current.height}
+          />
+        )}
+      </div>
+      {images.length > 1 && (
+        <div className="flex flex-row gap-8">
+          <button
+            className="text-fg text-[1.5rem] bg-transparent border-none hover:text-brand-pink"
+            onClick={showPrev}
+            aria-label="Previous image"
+          >
+            &larr;
+          </button>
+          <button
+            className="text-fg text-[1.5rem] bg-transparent border-none hover:text-brand-pink"
+            onClick={showNext}
+            aria-label="Next image"
+          >
+            &rarr;
+          </button>
+        </div>
+      )}
     </div>
-  )
+  );
 }

@@ -16,9 +16,23 @@ export function getHomepage() {
   return sanityFetch(HOME_QUERY);
 }
 
+const CV_QUERY = groq`
+  *[_type == "cv"][0]{
+    "fileUrl": file.asset->url
+  }
+`;
+
+export function getCv() {
+  return sanityFetch(CV_QUERY);
+}
+
 const POSTS_QUERY = groq`
   *[_type == "post"]
   |order(workDate desc)
+  {
+    ...,
+    "videoFileUrl": video.asset->url
+  }
 `;
 
 export function getWorks() {
@@ -27,6 +41,10 @@ export function getWorks() {
 
 const WORK_QUERY = groq`
   *[_type == "post" && slug.current == $slug][0]
+  {
+    ...,
+    "videoFileUrl": video.asset->url
+  }
 `;
 
 export function getWork(slug: string) {

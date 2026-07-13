@@ -57,7 +57,7 @@ export type Homepage = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  coverImage?: {
+  image?: {
     asset?: {
       _ref: string
       _type: 'reference'
@@ -67,42 +67,27 @@ export type Homepage = {
     media?: unknown
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    altText?: string
     _type: 'image'
   }
-  coverText?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-        listItem?: 'bullet' | 'number'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: {
-          _ref: string
-          _type: 'reference'
-          _weak?: boolean
-          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-        }
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        _type: 'image'
-        _key: string
-      }
-  >
-  altText?: string
+  bio?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote' | 'alignLeft' | 'alignRight' | 'justify'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
 }
 
 export type Calendar = {
@@ -141,7 +126,7 @@ export type Post = {
           _type: 'span'
           _key: string
         }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote' | 'alignLeft' | 'alignRight' | 'justify'
         listItem?: 'bullet' | 'number'
         markDefs?: Array<{
           href?: string
@@ -193,6 +178,8 @@ export type Post = {
     altText?: string
     _type: 'file'
   }
+  /** Populated by the "videoFileUrl": video.asset->url GROQ projection in sanity/fetch.ts */
+  videoFileUrl?: string | null
   gallery?: Array<{
     asset?: {
       _ref: string

@@ -1,35 +1,27 @@
 import { Metadata } from "next";
-import WorkDetail from "@/app/components/WorkDetail";
+import Link from "next/link";
 import { getWorks } from "@/sanity/fetch";
 import { Post } from "@/app/types/sanity.types";
-import styles from "@/app/ui/work.module.css";
 
 export const metadata: Metadata = {
   title: "Chloë Engel Works",
   description: "An archive of performance and art works by Chloë Engel, Including Rubber, The Organ, famousley you squeeze me",
 };
 
-
 export default async function Works() {
   const works: Post[] = await getWorks();
 
   return (
-    <main className={styles.main}>
-      <div className={styles.worksWrapper}>
-        {
-          works.map((work) => (
-            <div 
-              className={styles.workDetailWrapper}
-              key={`works-${work.title}`}
-            >
-              <WorkDetail 
-                theWork={work}
-              />
-            </div>
-          ))
-        } 
-
-      </div>
+    <main className="flex flex-col justify-center gap-4 min-h-[calc(100vh-2rem)] p-[6rem_0_10rem_0] sm:pr-24">
+      <ul className="mx-auto w-80 list-none flex flex-col justify-center gap-8">
+        {works.map((work) => (
+          <li key={work._id}>
+            <Link className="text-fg no-underline" href={`/works/${work.slug?.current}`}>
+              {work.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </main>
   );
 }

@@ -1,7 +1,4 @@
-import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
-import Nav from "./components/nav";
-// import Footer from "./components/footer";
+import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -9,12 +6,6 @@ export const metadata: Metadata = {
   description: "An archive of performance and art works by Chloe Engel, and a Calendar of upcoming events",
 };
 
-// Load the font
-const openSans = Open_Sans({
-  subsets: ["latin"],   // required
-  variable: "--font-open-sans", // optional: CSS variable for Tailwind or custom usage
-  display: "swap", // optional: control font-display
-});
 
 export default function RootLayout({
   children,
@@ -22,11 +13,11 @@ export default function RootLayout({
   children: React.ReactNode;  
 }>) {
   return (
-    <html lang="en">
-      <body className={`${openSans.variable} antialiased globalBody`}>
-        <Nav />
+    <html lang="en" className="max-w-[100vw]">
+      <body
+        className={`antialiased w-full bg-bg text-fg font-sans text-[12pt]`}
+      >
         {children}
-        {/* <Footer /> */}
       </body>
     </html>
   );

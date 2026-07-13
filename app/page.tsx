@@ -28,7 +28,7 @@ export default async function Home() {
   const calendarEntry: Calendar | null = await getFeaturedCalendarEntry();
 
   const imageUrl = home.image?.asset ? urlFor(home.image.asset)?.url() : null;
-
+  console.log("lol", cv);
   return (
     <main className="flex flex-col gap-16 md:gap-8 md:flex-row items-center min-h-screen max-w-[1000px] mx-auto p-2 mb-20 md:mb-0">
       <div className="w-full md:w-1/2 flex flex-col items-start justify-start text-left gap-3 pt-12 md:pt-0">
@@ -41,13 +41,13 @@ export default async function Home() {
         </a>
         {cv?.fileUrl && (
           <a
-            className="text-fg underline hover:text-brand-pink"
+            className="text-fg text-[12px] underline hover:text-brand-pink"
             href={cv.fileUrl}
             download
             target="_blank"
             rel="noopener noreferrer"
           >
-            Download CV
+            download CV
           </a>
         )}
         {works && works.length > 0 && (

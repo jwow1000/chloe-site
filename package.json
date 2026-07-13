@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@portabletext/react": "^3.2.1",
@@ -17,24 +17,23 @@
     "date-fns": "^4.1.0",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
-    "next": "15.1.7",
+    "next": "16.2.10",
     "next-sanity": "^9.8.59",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "react-photo-gallery": "^8.0.0",
     "sanity": "^3.77.2",
     "sanity-typed-schema": "^0.3.1",
     "three": "^0.174.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.3.2",
     "@types/d3": "^7.4.3",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9",
-    "eslint-config-next": "15.1.7",
+    "eslint-config-next": "16.2.10",
     "tailwindcss": "^4.3.2",
     "typescript": "^5"
   }

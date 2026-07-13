@@ -36,8 +36,8 @@ export default async function WorkDetail({ theWork }: { theWork: Post }) {
 
   // render title, dates, description, image, and video
   return (
-    <div className="w-full max-w-[1000px] mx-auto pb-24 flex flex-row flex-wrap">
-      <div className="w-1/2 pr-12 flex flex-col justify-center">
+    <div className="w-full max-w-[1000px] h-screen p-2 mx-auto flex flex-col md:flex-row md:flex-wrap">
+      <div className="w-full md:w-1/2 md:pr-12 flex flex-col justify-start md:justify-center">
         <Link href="/" aria-label="Return home" className="inline-block w-14 mb-14">
           <Image
             src="/hand.svg"
@@ -56,13 +56,13 @@ export default async function WorkDetail({ theWork }: { theWork: Post }) {
       </div>
       {
         images.length > 0 &&
-        <div className="w-1/2 flex flex-col gap-8 justify-center">
+        <div className="w-full md:w-1/2 flex flex-col gap-8 justify-center">
           <Gallery images={images} />
         </div>
       }
       {
         theWork.videoFileUrl &&
-        <div className="w-1/2 flex flex-col gap-8 justify-center">
+        <div className="w-full md:w-1/2 flex flex-col gap-8 justify-center">
           { (
             <video
               className="w-full h-auto"
@@ -75,7 +75,7 @@ export default async function WorkDetail({ theWork }: { theWork: Post }) {
       }
       {
         theWork.videoLink &&
-        <div className="w-1/2 flex flex-col gap-8 justify-center">
+        <div className="w-full md:w-1/2 flex flex-col gap-8 justify-center">
           <VideoEmbed url={theWork.videoLink} />
         </div>
       }

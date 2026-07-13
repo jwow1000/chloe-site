@@ -20,7 +20,7 @@ export default async function WorkPage({ params }: Params) {
 
 
   return (
-    <main className="flex flex-col justify-center gap-4 min-h-[calc(100vh-2rem)] pt-24">
+    <main className="flex flex-col justify-center gap-4">
       <WorkDetail theWork={theWork} />
     </main>
   );

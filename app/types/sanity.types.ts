@@ -96,16 +96,23 @@ export type Calendar = {
   _createdAt: string
   _updatedAt: string
   _rev: string
-  title?: string
-  dateRange?: {
-    from?: string
-    to?: string
-  }
-  location?: string
-  externalLink?: {
-    url?: string
-    title?: string
-  }
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'blockquote'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      [key: string]: unknown
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  showOnHomepage?: boolean
 }
 
 export type Post = {

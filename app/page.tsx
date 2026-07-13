@@ -3,9 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { getHomepage, getCv, getWorks } from "@/sanity/fetch";
+import {
+  getHomepage,
+  getCv,
+  getWorks,
+  getFeaturedCalendarEntry,
+} from "@/sanity/fetch";
 import { client } from "@/sanity/client";
-import { Homepage, Post } from "@/app/types/sanity.types";
+import { Homepage, Post, Calendar } from "@/app/types/sanity.types";
 import { portableTextComponents } from "@/app/components/portableTextComponents";
 
 // image setup
@@ -20,12 +25,13 @@ export default async function Home() {
   const home: Homepage = await getHomepage();
   const cv: { fileUrl: string | null } = await getCv();
   const works: Post[] = await getWorks();
+  const calendarEntry: Calendar | null = await getFeaturedCalendarEntry();
 
   const imageUrl = home.image?.asset ? urlFor(home.image.asset)?.url() : null;
 
   return (
-    <main className="flex flex-row items-center min-h-screen max-w-[1000px] mx-auto">
-      <div className="w-1/2 flex flex-col items-start justify-start text-left gap-3">
+    <main className="flex flex-col gap-16 md:gap-8 md:flex-row items-center min-h-screen max-w-[1000px] mx-auto p-2 mb-20 md:mb-0">
+      <div className="w-full md:w-1/2 flex flex-col items-start justify-start text-left gap-3 pt-12 md:pt-0">
         <h1 className="text-[14px] font-normal mb-2">Chloë Engel</h1>
         <a
           className="text-fg no-underline hover:text-brand-pink text-[12px]"
@@ -58,21 +64,34 @@ export default async function Home() {
           </div>
         )}
       </div>
-      <div className="w-1/2 flex flex-col items-center gap-8">
-        {imageUrl && (
-          <Image
-            className="w-full h-auto max-w-[32rem] object-cover"
-            src={imageUrl}
-            alt={home.image?.altText || ""}
-            width={1600}
-            height={1000}
-          />
-        )}
-        <div className="text-fg text-[12px] text-justify w-fit max-w-[300px] inline-block [&_p]:mb-8">
-          {
-            home.bio &&
-            <PortableText value={home.bio} components={portableTextComponents} />
-          }
+      <div className="w-full md:w-1/2 flex flex-col items-start md:items-center gap-8">
+        <div className="w-full flex flex-col">
+          <div className="text-fg text-[12px] text-justify w-fit max-w-[45ch] inline-block [&_p]:mb-8">
+            {home.bio && (
+              <PortableText
+                value={home.bio}
+                components={portableTextComponents}
+              />
+            )}
+          </div>
+
+          {imageUrl && (
+            <Image
+              className="w-full h-auto max-w-[32rem] object-cover"
+              src={imageUrl}
+              alt={home.image?.altText || ""}
+              width={1600}
+              height={1000}
+            />
+          )}
+          {calendarEntry?.body && (
+            <div className="text-fg text-[12px] font-italic w-full max-w-[300px] inline-block my-6">
+              <PortableText
+                value={calendarEntry.body}
+                components={portableTextComponents}
+              />
+            </div>
+          )}
         </div>
       </div>
     </main>

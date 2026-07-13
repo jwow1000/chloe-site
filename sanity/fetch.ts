@@ -50,3 +50,11 @@ const WORK_QUERY = groq`
 export function getWork(slug: string) {
   return sanityFetch(WORK_QUERY, {slug: slug})
 }
+
+const FEATURED_CALENDAR_QUERY = groq`
+  *[_type == "calendar" && showOnHomepage == true][0]
+`;
+
+export function getFeaturedCalendarEntry() {
+  return sanityFetch(FEATURED_CALENDAR_QUERY);
+}

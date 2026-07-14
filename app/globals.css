@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-fg: #111111;
+  --color-fg: #05481a;
   --color-bg: #ffffff;
-  --color-brand-pink: pink;
+  --color-brand-pink: gray;
   --font-sans: Arial, Helvetica, sans-serif;
 
   /* matches the original design's mobile (<600px) / tablet (600-999px) / desktop (1000px+) tiers */

@@ -30,7 +30,7 @@ export default async function Home() {
   const imageUrl = home.image?.asset ? urlFor(home.image.asset)?.url() : null;
   console.log("lol", cv);
   return (
-    <main className="flex flex-col md:gap-8 md:flex-row pt-44 justify-center items-start min-h-screen max-w-[1000px] mx-auto p-2 mb-20 md:mb-0">
+    <main className="flex flex-col md:gap-8 md:flex-row pt-0 md:pt-54 justify-center items-start min-h-screen max-w-[1000px] mx-auto mb-20 md:mb-0">
       <div className="w-full md:w-1/3 flex flex-col items-start justify-start text-left pt-12 md:pt-0">
         <h1 className="text-[14px] font-normal m-0">Chloë Engel</h1>
         <a

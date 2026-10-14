@@ -30,7 +30,7 @@ export default async function Home() {
   const imageUrl = home.image?.asset ? urlFor(home.image.asset)?.url() : null;
   console.log("lol", cv);
   return (
-    <main className="flex flex-col md:gap-8 md:flex-row p-2 md:pt-54 justify-center items-start min-h-screen max-w-[1000px] mx-auto mb-20 md:mb-0">
+    <main className="flex flex-col md:gap-8 md:flex-row p-2 md:py-12 justify-center items-start md:items-center min-h-screen md:h-dvh md:min-h-0 max-w-[1000px] mx-auto mb-20 md:mb-0">
       <div className="w-full md:w-1/3 flex flex-col items-start justify-start text-left pt-12 md:pt-0">
         <h1 className="text-[14px] font-normal m-0">Chloë Engel</h1>
         <a
@@ -64,8 +64,8 @@ export default async function Home() {
           </div>
         )}
       </div>
-      <div className="w-full md:w-1/3 flex flex-col items-start md:items-center gap-8">
-        <div className="w-full flex flex-col">
+      <div className="w-full md:w-1/3 md:max-h-full md:min-h-0 flex flex-col items-start md:items-center md:justify-center gap-8">
+        <div className="w-full md:max-h-full md:min-h-0 flex flex-col">
           <div className="text-fg text-[12px] text-justify w-fit max-w-[45ch] inline-block [&_p]:mb-8">
             {home.bio && (
               <PortableText
@@ -77,7 +77,7 @@ export default async function Home() {
 
           {imageUrl && (
             <Image
-              className="w-full h-auto max-w-[32rem] object-cover"
+              className="w-full h-auto max-w-[32rem] object-cover md:min-h-0 md:object-contain md:object-left"
               src={imageUrl}
               alt={home.image?.altText || ""}
               width={1600}

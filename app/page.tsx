@@ -28,10 +28,10 @@ export default async function Home() {
   const calendarEntry: Calendar | null = await getFeaturedCalendarEntry();
 
   const imageUrl = home.image?.asset ? urlFor(home.image.asset)?.url() : null;
-  console.log("lol", cv);
+
   return (
-    <main className="flex flex-col md:gap-8 md:flex-row p-2 md:py-12 justify-center items-start md:items-center min-h-screen md:h-dvh md:min-h-0 max-w-[1000px] mx-auto mb-20 md:mb-0">
-      <div className="w-full md:w-1/3 flex flex-col items-start justify-start text-left pt-12 md:pt-0">
+    <main className="flex flex-col md:gap-8 md:flex-row p-2 md:py-12 justify-center items-start md:flex-wrap md:content-center md:items-stretch min-h-screen md:h-dvh md:min-h-0 max-w-[1000px] mx-auto mb-20 md:mb-0">
+      <div className="w-full md:w-1/3 md:max-h-[calc(100dvh-6rem)] md:overflow-y-auto flex flex-col items-start justify-start text-left pt-12 md:pt-0">
         <h1 className="text-[14px] font-normal m-0">Chloë Engel</h1>
         <a
           className="text-fg no-underline hover:text-brand-pink text-[12px]"
@@ -64,28 +64,29 @@ export default async function Home() {
           </div>
         )}
       </div>
-      <div className="w-full md:w-1/3 md:max-h-full md:min-h-0 flex flex-col items-start md:items-center md:justify-center gap-8">
-        <div className="w-full md:max-h-full md:min-h-0 flex flex-col">
-          <div className="text-fg text-[12px] text-justify w-fit max-w-[45ch] inline-block [&_p]:mb-8">
-            {home.bio && (
-              <PortableText
-                value={home.bio}
-                components={portableTextComponents}
-              />
-            )}
-          </div>
-
+      <div className="relative w-full md:w-1/3 flex flex-col items-start md:items-center gap-8">
           {imageUrl && (
             <Image
-              className="w-full h-auto max-w-[32rem] object-cover md:min-h-0 md:object-contain md:object-left"
+              className="w-full h-auto max-w-[32rem] md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-auto md:max-h-dvh"
               src={imageUrl}
               alt={home.image?.altText || ""}
-              width={1600}
-              height={1000}
+              width={600}
+              height={500}
             />
           )}
+        <div className="w-full flex flex-col md:h-full p-8">
+          <div className="relative w-full md:flex-1 md:min-h-0">
+            <div className="text-fg text-[12px] text-justify w-fit max-w-[45ch] inline-block [&_p]:mb-8 md:absolute md:top-0 md:left-0 md:z-10 md:bg-bg md:pr-3 md:pb-3 md:[&_p:last-child]:mb-0 p-1">
+              {home.bio && (
+                <PortableText
+                  value={home.bio}
+                  components={portableTextComponents}
+                />
+              )}
+            </div>
+          </div>
           {calendarEntry?.body && (
-            <div className="text-fg text-[12px] italic w-full inline-block my-6">
+            <div className="text-fg bg-bg z-10 text-[12px] italic w-full inline-block my-6 md:mb-0 ">
               <PortableText
                 value={calendarEntry.body}
                 components={portableTextComponents}
